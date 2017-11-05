@@ -1,0 +1,10 @@
+# VSCode Config
+
+
+# npm
+package-lock.json
+
+# directories
+node_modules
+miscellaneous 
+dist
