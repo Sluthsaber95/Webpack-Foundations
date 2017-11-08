@@ -1,21 +1,17 @@
-import _ from 'lodash';
-import './style.css';
-import Icon from './icon.png';
+import { cube } from './math.js';
 
 function component() {
-    var element = document.createElement('div');
 
-    // Lodash, now imported by this script
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    element.classList.add('hello');
+    var element = document.createElement('pre');
+
+
+
+    element.innerHTML = [
+        'Hello webpack!',
+        '5 cubed is equal to ' + cube(5)
+    ].join('\n\n');
+
     return element;
-
-    // Add the image to our existing div.
-    var myIcon = new Image();
-    myIcon.src = Icon;
-
-    element.appendChild(myIcon);
-
 }
 
 document.body.appendChild(component());
