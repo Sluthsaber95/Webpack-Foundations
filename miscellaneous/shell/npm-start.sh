@@ -26,6 +26,7 @@ echo "You entered: $input_variable"
 #     esac
 # done
 # npm
+# Download nvm, node & npm
   touch package.json\ 
   npm init -y\
   npm set init.author.name "anthony_tran"\

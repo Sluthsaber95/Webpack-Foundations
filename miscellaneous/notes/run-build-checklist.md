@@ -1,3 +1,5 @@
+## Initial Step
+
 webpack.config.js -> Checks all plugins, loaders
 
 1) Plugins - Correct Plugins Required
@@ -11,7 +13,13 @@ else => Module not found: Error: Can't resolve
 
 import files all have the correct loaders
 
-
 src
 1) File doesn't exist within the src directory
 ERROR in Entry module not found: Error: Can't resolve
+
+
+## Next Step
+
+Read Error Code, monitor changes.
+
+Look through all plugins _used_ and research over there usuage.  
