@@ -4,13 +4,15 @@
     "description": "",
     "main": "webpack.config.js",
     "scripts": {
-        "build": "webpack"
+        "start": "webpack-dev-server --open --config webpack.dev.js",
+        "build": "webpack --config webpack.prod.js"
     },
     "keywords": [],
     "author": "anthony_tran <anthonytran.dev@gmail.com>",
     "license": "MIT",
     "devDependencies": {
         "uglifyjs-webpack-plugin": "^1.0.1",
-        "webpack": "^3.8.1"
+        "webpack": "^3.8.1",
+        "webpack-merge": "^4.1.1"
     }
 }
