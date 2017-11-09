@@ -15,5 +15,18 @@
      output: {
          filename: '[name].bundle.js',
          path: path.resolve(__dirname, 'dist')
+     },
+     module: {
+         loaders: [{
+             test: /\.js$/,
+             exclude: __dirname + '/node_modules/',
+             loader: 'babel-loader',
+             query: {
+                 presets: ['env']
+             }
+         }]
+     },
+     stats: {
+         colors: true
      }
  };

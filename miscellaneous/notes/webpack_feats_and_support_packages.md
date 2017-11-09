@@ -11,6 +11,7 @@ Source maps enable you to located where the error is within the stack trace.
 
 In order to make it easier to track down errors and warnings, JavaScript offers source maps, which maps your compiled code back to your original source code. If an error originates from b.js, the source map will tell you exactly that.
 
+Avoid inline-*** and eval-*** use in production as they can increase bundle size and reduce the overall performance.
 
 ## Utilizing Watch mode
 
@@ -82,3 +83,43 @@ import {
 } from '/modules/my-module.js';
 
 > Note there is syntax linting in webstorm
+
+## Tree Shaking
+
+By default webpack, highlights unused dead code, whenever you add a utility to your project
+
+## Minification
+
+With minification and tree shaking our bundle is now a few bytes smaller! While that may not seem like much in this contrived example, tree shaking can yield a significant decrease in bundle size when working on larger applications with complex dependency trees.
+
+>Using UglifyJSPlugin
+
+Please note that webpack doesn't perform tree-shaking by itself. It relies on third party tools like UglifyJS to perform actual dead code elimination. There are situations where tree-shaking may not be effective. For example, consider the following modules:
+
+So, what we've learned is that in order to take advantage of tree shaking, you must...
+
+Use ES2015 module syntax (i.e. import and export).
+Include a minifier that supports dead code removal (e.g. the UglifyJSPlugin).
+You can imagine your application as a tree. The source code and libraries you actually use represent the green, living leaves of the tree. Dead code represents the brown, dead leaves of the tree that are consumed by autumn. In order to get rid of the dead leaves, you have to shake the tree, causing them fall.
+
+If you are interested in more ways to optimize your output, please jump to the next guide for details on building for
+
+## Production
+
+While we will separate the production and development specific bits out, note that we'll still maintain a "common" configuration to keep things DRY. In order to merge these configurations together, we'll use a utility called webpack-merge. With the "common" configuration in place, we won't have to duplicate code within the environment-specific configurations.
+
+Uglify.js needs babel to work, unless you strictly change your codebase to ES5
+[BABEL] Note: The code generator has deoptimised the styling of - just need to exclude: __dirname + '/node_modules/'
+
+## Specifying the environment
+
+If you're using a library like react, you should actually see a significant drop in bundle size after adding this plugin. Also note that any of our local /src code can key off of this as well, so the following check would be valid:
+
+Technically, NODE_ENV is a system environment variable that Node.js exposes into running scripts. It is used by convention to determine dev-vs-prod behavior by server tools, build scripts, and client-side libraries. Contrary to expectations, process.env.NODE_ENV is not set to "production" within the build script webpack.config.js, see #2537. Thus, conditionals like process.env.NODE_ENV === 'production' ? '[name].[hash].bundle.js' : '[name].bundle.js' within webpack configurations do not work as expected.
+
+## CLI
+
+
+
+While these short hand [CLI](https://webpack.js.org/guides/production/#cli-alternatives)
+methods are nice, we usually recommend just using the configuration as it's better to understand exactly what is being done for you in both cases. The configuration also gives you more control on fine tuning other options within both plugins.
